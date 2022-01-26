@@ -8,6 +8,12 @@
     "build": "apt-get install build-essential",
     "dev": "nodemon server.js"
   },
+
+  "engines": {
+    "node": "12.22.5",
+    "npm":"7.5.2"
+
+  },
   "heroku-run-build-script": true,
   "author": "Atanu Debnath",
   "license": "ISC",
