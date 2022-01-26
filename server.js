@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 app.use(express.json());
 app.use(express.urlencoded());
 
-mongoose.connect(process.env.MONGOURL, () => console.log("DB Connected"));
+//mongoose.connect(process.env.MONGOURL, () => console.log("DB Connected"));
 
 app.get("/", (req, res) => res.send("server ok"));
 app.get("/api", (req, res) => res.send("Api ok"));

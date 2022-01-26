@@ -14,14 +14,13 @@
     "npm":"7.5.2"
 
   },
-  "heroku-run-build-script": true,
+ 
   "author": "Atanu Debnath",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.25.0",
     "bcrypt": "^5.0.1",
     "compile-run": "^2.3.4",
-    "compilex": "^0.7.4",
     "dotenv": "^14.3.2",
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
