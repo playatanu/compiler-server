@@ -5,7 +5,6 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "build": "apt-get install build-essential",
     "dev": "nodemon server.js"
   },
 
