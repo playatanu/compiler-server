@@ -1,4 +1,5 @@
 const Code = require("../models/codeModel");
+const { tokenVerify } = require("./token");
 
 const createCode = async (body) => {
   try {
@@ -26,17 +27,19 @@ const getCodeByID = async (id) => {
   }
 };
 
-const deleteCodeByID = async (id) => {
+const deleteCodeByID = async (token, id) => {
   try {
-    return await Code.findByIdAndDelete(id);
+    if (id == tokenVerify(token)) return await Code.findByIdAndDelete(id);
+    else return "You can't Delete this!";
   } catch (error) {
     return error;
   }
 };
 
-const patchCodeByID = async (id, body) => {
+const patchCodeByID = async (token, id, body) => {
   try {
-    return await Code.findByIdAndUpdate(id, body);
+    if (id == tokenVerify(token)) return await Code.findByIdAndUpdate(id, body);
+    else return "You can't Edit this!";
   } catch (error) {
     return error;
   }

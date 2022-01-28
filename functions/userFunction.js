@@ -1,31 +1,5 @@
 const User = require("../models/userModel");
-const { tokenCreate } = require("./token");
-const { hashUser, hashUserCompire } = require("./hashPassword");
-
-// ------------------ - User Auth System - ---------------------------
-
-const createUser = async (body) => {
-  try {
-    const newUser = new User(await hashUser(body));
-    await newUser.save();
-    return { token: tokenCreate(newUser.id) };
-  } catch (error) {
-    return error;
-  }
-};
-
-const loginUser = async (body) => {
-  try {
-    const user = await User.findOne({ email: body.email });
-    if (await hashUserCompire(body.password, user.password)) {
-      return { token: await tokenCreate(user.id) };
-    }
-  } catch (error) {
-    return error;
-  }
-};
-
-// ------------------ - User System - ---------------------------
+const { tokenVerify } = require("../functions/token");
 
 const getallUser = async () => {
   try {
@@ -43,25 +17,25 @@ const getUserByID = async (id) => {
   }
 };
 
-const deleteUserByID = async (id) => {
+const deleteUserByID = async (token, id) => {
   try {
-    return await User.findByIdAndDelete(id);
+    if (id == tokenVerify(token)) return await User.findByIdAndDelete(id);
+    else return "You are not Admin";
   } catch (error) {
     return error;
   }
 };
 
-const patchUserByID = async (id, body) => {
+const patchUserByID = async (token, id, body) => {
   try {
-    return await User.findByIdAndUpdate(id, body);
+    if (id == tokenVerify(token)) return await User.findByIdAndUpdate(id, body);
+    else return "You are not Admin";
   } catch (error) {
     return error;
   }
 };
 
 module.exports = {
-  createUser,
-  loginUser,
   getallUser,
   getUserByID,
   deleteUserByID,

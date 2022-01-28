@@ -1,9 +1,13 @@
-const jwt = require("jsonwebtoken");
+const { tokenVerify } = require("../functions/token");
 const authMiddleware = (req, res, next) => {
-  if (req.body.id == jwt.verify(req.headers.token, "jwtkey")) {
-    next();
-  } else {
-    res.send("Auth Fail");
+  try {
+    if (req.body.id == tokenVerify(req.headers.token)) {
+      next();
+    } else {
+      res.send("Token Fail");
+    }
+  } catch (error) {
+    res.send(error);
   }
 };
 

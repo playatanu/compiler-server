@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { createUser, loginUser } = require("../functions/userFunction");
+const { createUser, loginUser } = require("../functions/authFunction");
 
 // GET user signup
 router.route("/signup").post(async (req, res) => {

@@ -8,7 +8,7 @@ const tokenCreate = (id) => {
   }
 };
 
-const tokenVerify = async (token) => {
+const tokenVerify = (token) => {
   try {
     return jwt.verify(token, process.env.JWT);
   } catch (error) {
